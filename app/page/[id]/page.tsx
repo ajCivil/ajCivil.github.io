@@ -14,7 +14,6 @@ export async function generateStaticParams() {
 }
 
 const Page = async ({ params }: { params: any }) => {
-  console.log('[params - page]',params.id)
   const currentPage = Number(params.id) || 1;
   const postsPerPage = 10;
   const posts = await getAllPostList();

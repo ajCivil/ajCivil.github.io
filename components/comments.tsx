@@ -5,15 +5,15 @@ import Giscus from "@giscus/react";
 export default function Comments() {
   return (
     <Giscus
-      repo="chennlang/chennlang.github.io"
-      repoId="R_kgDON2OHoA"
-      category="Comments"
-      categoryId="DIC_kwDON2OHoM4CmxNZ"
+      repo="ajCivil/ajCivil.github.io"
+      repoId="R_kgDOOJsvfA"
+      category="Announcements"
+      categoryId="DIC_kwDOOJsvfM4CoNrV"
       mapping="pathname"
       strict="0"
       reactionsEnabled="1"
       emitMetadata="0"
-      inputPosition="top"
+      inputPosition="bottom"
       theme="preferred_color_scheme"
       lang="zh-CN"
     />

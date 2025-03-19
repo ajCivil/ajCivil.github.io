@@ -6,7 +6,7 @@ import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import rehypeSlug from 'rehype-slug';
 import rehypeHighlight from 'rehype-highlight';
-
+ 
 const postsDirectory = path.join(process.cwd(), "posts");
 
 // 递归获取子文件夹下的文件
@@ -28,22 +28,24 @@ async function recursionFolder(allFiles: Array<string>, dirPath: string = postsD
 }
 
 // 获取文章ID列表
-export async function getAllPostIds(): Promise<{ id: string, url: string }[]> {
+export async function getAllPostIds(): Promise<{ id: string| Array<string>, url: string }[]> {
     // 读取 posts 目录下的所有文件
     const fileNamesBase = await fs.readdir(postsDirectory);
     let fileNames = await recursionFolder(fileNamesBase)
     // 过滤出 .md 文件，并生成路径参数
-    return fileNames
+    let s=  fileNames
       .filter((fileName) => fileName.id.endsWith(".md")) // 只处理 .md 文件
       .map((fileName) => ({
         url:fileName.url.replace(/\.md$/, ""),
         id: fileName.id.replace(/\.md$/, ""), // 去掉 .md 后缀
-      }));
+        // id: ('post/'+fileName.url).replace(/\.md$/, "").replaceAll('\\','/').split('/').filter(Boolean)
+      })); 
+    return s
   }
 
 
 // 获取文章内容
-export async function getPost(id: string) {
+export async function getPost(id: string| Array<string>) {
     const markdownWithMeta = await fs.readFile(
       path.join("posts", id + ".md"),
       "utf-8"
@@ -71,7 +73,6 @@ export async function getPost(id: string) {
 // 获取所有文章列表+内容
 export async function getAllPostList() {
     const ids = await getAllPostIds()
-    console.log('ids',ids)
     const list  = await Promise.all(ids.map(m => getPost((m.url))))
     return list.sort((a, b) => b.frontmatter.date.localeCompare(a.frontmatter.date))
 }
