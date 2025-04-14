@@ -3,24 +3,12 @@ import Comments from "@/components/comments";
 import ImagePreview from "@/components/image-preview";
 import "./post.css";
 
-// export const config = {
-//   dynamicParams: true
-// }
-export const dynamicParams = false
-
-type StaticProps = {
-  params: {
-    id: string | Array<string>;
-  }
-}
-
 export async function generateStaticParams() {
   const posts = await getAllPostIds(); 
   return posts;
 }
 
-const Post = async ({ params }: StaticProps) => {
-  console.log('[params]',params.id);
+const Post = async ({ params }: any) => {
   const { frontmatter, contentHtml } = await getPost(params.id);
 
   const metaList = Object.keys(frontmatter)

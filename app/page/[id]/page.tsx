@@ -13,8 +13,9 @@ export async function generateStaticParams() {
   }));
 }
 
-const Page = async ({ params }: { params: any }) => {
-  const currentPage = Number(params.id) || 1;
+const Page = async ({ params }: { params: any}) => {
+  const { id } = await params
+  const currentPage = Number(id) || 1;
   const postsPerPage = 10;
   const posts = await getAllPostList();
   const categories = Array.from(

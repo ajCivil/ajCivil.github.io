@@ -28,7 +28,7 @@ async function recursionFolder(allFiles: Array<string>, dirPath: string = postsD
 }
 
 // 获取文章ID列表
-export async function getAllPostIds(): Promise<{ id: string| Array<string>, url: string }[]> {
+export async function getAllPostIds(): Promise<{ id: string, url: string }[]> {
     // 读取 posts 目录下的所有文件
     const fileNamesBase = await fs.readdir(postsDirectory);
     let fileNames = await recursionFolder(fileNamesBase)
@@ -45,7 +45,7 @@ export async function getAllPostIds(): Promise<{ id: string| Array<string>, url:
 
 
 // 获取文章内容
-export async function getPost(id: string| Array<string>) {
+export async function getPost(id: string) {
     const markdownWithMeta = await fs.readFile(
       path.join("posts", id + ".md"),
       "utf-8"
