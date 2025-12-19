@@ -5,7 +5,13 @@ categories: "MICRO"
 summary: "micro-frontend is a term that describes a pattern for building a single application from multiple frontend applications."
 ---
 
+
+
 ### 1. what is the micro-frontend?
+> [https://microfrontends.com/](https://microfrontends.com/) 
+>
+> [https://micro-frontends.org](https://micro-frontends.org/)
+
 将应用划分成若干子应用，将子应用打包成一个个模块，当路径切换时加载不同的子应用，技术栈也不用做限制；
 从而解决前端协同开发的问题。
 
